@@ -1,0 +1,237 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+"Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/nerdcommenter'
+
+"Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'simplyzhao/cscope_maps.vim'
+
+"
+Plugin 'kien/ctrlp.vim'
+
+"http://vimawesome.com/plugin/ctrlp-funky
+Plugin 'tacahiroy/ctrlp-funky'
+
+"http://vimawesome.com/plugin/a-vim
+Plugin 'a.vim'
+
+Plugin 'Conque-GDB'
+Plugin 'piec/man.vim'
+
+"Plugin 'ervandew/eclim'
+
+"
+"Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-repeat'
+"
+"Plugin 'bronson/vim-trailing-whitespace'
+"
+"Plugin 'junegunn/vim-easy-align'
+"
+""https://github.com/Lokaltog/vim-easymotion
+"Plugin 'Lokaltog/vim-easymotion'
+"
+"Plugin 'vim-scripts/matchit.zip'
+"Plugin 'kshenoy/vim-signature'
+"
+"Plugin 'terryma/vim-expand-region'
+"Plugin 'vim-multiple-cursors'
+"
+"Plugin 'vim-ctrlspace'
+"
+"Plugin 'majutsushi/tagbar'
+"
+""http://vimawesome.com/plugin/indent-guides
+"Plugin 'nathanaelkane/vim-indent-guides'
+"
+""http://vimawesome.com/plugin/taglist-vim
+"Plugin 'taglist.vim'
+"
+""http://vimawesome.com/plugin/yankring-vim
+"Plugin 'YankRing.vim'
+"
+""http://vimawesome.com/plugin/vim-tmux-navigator
+"Plugin 'christoomey/vim-tmux-navigator'
+"
+"
+"Plugin 'bufexplorer.zip'
+"Plugin 'ZoomWin'
+"
+""http://vimawesome.com/plugin/numbers-vim
+""Plugin 'myusuf3/numbers.vim'
+""http://vimawesome.com/plugin/undotree-vim
+"Plugin 'mbbill/undotree'
+"
+""http://vimawesome.com/plugin/grep-vim
+"Plugin 'grep.vim'
+"
+""http://vimawesome.com/plugin/node
+"Plugin 'moll/vim-node'
+"
+""http://vimawesome.com/plugin/rooter
+"Plugin 'airblade/vim-rooter'
+"
+""http://vimawesome.com/plugin/vcscommand-vim
+"Plugin 'vcscommand.vim'
+"
+""http://vimawesome.com/plugin/file-line
+""Plugin 'bogado/file-line'
+"
+"
+""http://vimawesome.com/plugin/python-mode
+"Plugin 'klen/python-mode'
+"
+""http://vimawesome.com/plugin/vim-gitgutter
+"Plugin 'airblade/vim-gitgutter'
+"
+""http://vimawesome.com/plugin/vim-javascript
+"Plugin 'pangloss/vim-javascript'
+"
+"Plugin 'thinca/vim-quickrun'
+"
+""http://vimawesome.com/plugin/color-highlight
+"Plugin 'chrisbra/Colorizer'
+"
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+
+"for GVIM
+set guioptions-=T "Remove toolbar
+set guioptions-=r "Remove v_scroll bar
+
+autocmd! bufwritepost .vimrc source %
+
+let mapleader = ","
+set nocompatible
+filetype plugin on
+
+syntax enable
+syntax on
+
+"c indent
+set cindent
+set autoindent
+set cino=:0g0t0(sus
+filetype plugin indent on
+
+
+"let g:molokai_original = 1
+"let g:solarized_termtrans=1
+"let g:solarized_contrast="normal"
+"let g:solarized_visibility="normal"
+
+"
+"colorscheme molokai
+"set background=dark
+"set t_Co=256
+
+set t_Co=256
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+colorscheme solarized
+"colorscheme default
+
+"tab
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set sm
+
+"ctrlp-funky
+let g:ctrlp_extensions = ['funky']
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr> 
+
+"ConqueGDB
+let g:ConqueGdb_SrcSplit = 'above'
+
+"cscope
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+"    if filereadable("cscope.out")
+"        cs add cscope.out
+"    elseif $CSCOPE_DB != ""
+"        cs add $CSCOPE_DB
+"    endif
+    set csverb
+    set cscopetag
+    set cscopequickfix=s-,g-,c-,d-,t-,e-,f-,i-
+endif
+"
+map <C-F12> :!(cscope -b -R `cat file.lst`; ctags --c++-kinds=+p --fields=+iaS --extra=+q `cat file.lst`)<CR>
+
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest
+
+"let &termencoding=&encoding
+set fileencodings=utf-8,gbk
+"set backupdir=~/.vim/tmp
+
+let g:ycm_key_list_select_completion=['<c-n>']
+"let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion=['<c-p>']
+"let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+
+let g:ycm_goto_buffer_command = 'horizontal-split'
+" nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+
+
+let g:ycm_seed_identifiers_with_syntax=1
+
+if !empty(glob("~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"))
+    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+endif
+if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
+    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+endif
