@@ -6,8 +6,6 @@ bin=`cd "$bin"; pwd`
 
 FILESDIR=`cd $bin/../files; pwd`
 
-echo $FILESDIR
-
 FILES=`ls ${FILESDIR}`
 
 for I in ${FILES}; do
@@ -15,5 +13,6 @@ for I in ${FILES}; do
         cp ~/$I ${FILESDIR}/$I -r
         echo "backup .$I"
     fi
-    ln -sf ${FILESDIR}/.$I ~/.$I
+    ln -sf ${FILESDIR}/$I ~/.$I
+    echo "link ~/.$I to ${FILESDIR}/$I"
 done
