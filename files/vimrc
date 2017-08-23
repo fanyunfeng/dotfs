@@ -179,11 +179,11 @@ if has("cscope")
     set csto=0
     set cst
     set nocsverb
-"    if filereadable("cscope.out")
-"        cs add cscope.out
-"    elseif $CSCOPE_DB != ""
-"        cs add $CSCOPE_DB
-"    endif
+    if filereadable("cscope.out")
+        cs add cscope.out
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
     set csverb
     set cscopetag
     set cscopequickfix=s-,g-,c-,d-,t-,e-,f-,i-
